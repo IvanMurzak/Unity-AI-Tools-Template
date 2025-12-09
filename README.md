@@ -1,4 +1,4 @@
-# [Unity AI Tools Template](https://github.com/IvanMurzak/Unity-AI-Tools-Template)
+<h1 align="center"><a href="https://github.com/IvanMurzak/Unity-AI-Tools-Template">Unity AI Tools Template</a></h1>
 
 <img width="100%" alt="Stats" src="https://github.com/IvanMurzak/Unity-AI-Tools-Template/raw/main/docs/img/ai-game-dev.gif"/>
 
