@@ -18,6 +18,8 @@ namespace YOUR_PACKAGE_ID.Installer
     {
         public static void ExportPackage()
         {
+            Debug.Log("Starting Package Export...");
+
             var packagePath = "Assets/YOUR_PACKAGE_NAME_INSTALLER";
             var outputPath = "build/YOUR_PACKAGE_NAME_INSTALLER_FILE.unitypackage";
 
