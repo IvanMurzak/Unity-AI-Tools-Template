@@ -1,6 +1,7 @@
 {
     "name": "YOUR_PACKAGE_ID.Tests",
     "references": [
+        "com.IvanMurzak.Unity.MCP.Runtime",
         "UnityEngine.TestRunner",
         "YOUR_PACKAGE_ID.Runtime"
     ],
