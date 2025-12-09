@@ -1,8 +1,8 @@
-# [Unity Package Template](https://github.com/IvanMurzak/Unity-Package-Template)
+# [Unity AI Tools Template](https://github.com/IvanMurzak/Unity-AI-Tools-Template)
 
-<img width="100%" alt="Stats" src="https://user-images.githubusercontent.com/9135028/198754538-4dd93fc6-7eb2-42ae-8ac6-d7361c39e6ef.gif"/>
+<img width="100%" alt="Stats" src="https://github.com/IvanMurzak/Unity-AI-Tools-Template/raw/main/docs/img/ai-game-dev.gif"/>
 
-Unity Editor supports NPM packages. It is way more flexible solution in comparison with classic Plugin that Unity is using for years. NPM package supports versioning and dependencies. You may update / downgrade any package very easily. Also, Unity Editor has UPM (Unity Package Manager) that makes the process even simpler.
+Template for AI MCP Tools for [AI Game Developer (Unity-MCP)](https://github.com/IvanMurzak/Unity-MCP). Use this template to create your custom MCP tools for Unity Engine in 30 minutes. Read more about custom MCP tools [here](https://github.com/IvanMurzak/Unity-MCP?tab=readme-ov-file#add-custom-mcp-tool).
 
 This template repository is designed to be easily updated into a real Unity package. Please follow the instruction bellow, it will help you to go through the entire process of package creation, distribution and installing.
 
@@ -42,15 +42,59 @@ This script will:
    - Add the `Unity-Package` folder as a project.
    - Open both projects in Unity Editor. This will generate the necessary `.meta` files.
 
-#### 5️⃣ Version Management
+#### 5️⃣ Add MCP Tools
 
-To update the package version across all files (package.json, Installer.cs, etc.), use the bump version script:
+Decide what type of MCP tool you need:
 
-```powershell
-.\commands\bump-version.ps1 -NewVersion "1.0.1"
+- **MCP tool for Unity Editor**
+  - ✔️ Works in Unity Editor (Edit Mode)
+  - ✔️ Works in Unity Editor (Play Mode)
+  - ✔️ Has access to Editor API
+  - ❌ Available in a game build
+- **MCP tool for Unity Runtime**
+  - ✔️ Works in Unity Editor (Edit Mode)
+  - ✔️ Works in Unity Editor (Play Mode)
+  - ❌ Has access to Editor API
+  - ✔️ Available in a game build
+
+Based on your choice create script at the location
+
+- Editor: `Unity-Package/Assets/root/Editor`
+- Runtime: `Unity-Package/Assets/root/Runtime`
+
+> Read detailed instructions about custom tool development [here](https://github.com/IvanMurzak/Unity-MCP?tab=readme-ov-file#add-custom-mcp-tool).
+
+```csharp
+[McpPluginToolType]
+public static class MyCustomTool
+{
+    [McpPluginTool("my-custom-feature", Title = "Do my custom feature")]
+    [Description("Put here the tool description for LLM.")]
+    public static Task<bool> DoTurn(
+        [Description("Add description to the input property, help LLM better understand it.)]
+        int figureId,
+        [Description("Add description to the input property, help LLM better understand it.)]
+        Vector2Int position)
+    {
+        // do any logic in background thread here
+        return MainThread.Instance.RunAsync(() =>
+        {
+            // do any logic in main thread here
+
+            return true;
+        });
+    }
+}
 ```
 
-#### 6️⃣ Setup CI/CD
+
+---
+
+## Optional improvements
+
+Next steps are not required to make everything to work, but they could be a great improvement for your new package.
+
+### Optional - Setup CI/CD
 
 To enable automatic testing and deployment:
 
@@ -74,7 +118,7 @@ To enable automatic testing and deployment:
 4.  **Automatic Deployment**
     The release workflow triggers automatically when you push to the `main` branch with an incremented version in `package.json`.
 
-#### 7️⃣ Add files into `Assets/root` folder
+### Optional - Add files into `Assets/root` folder
 
 [Unity guidelines](https://docs.unity3d.com/Manual/cus-layout.html) about organizing files into the package root directory
 
@@ -106,6 +150,14 @@ To enable automatic testing and deployment:
        └── [package-name].md
 ```
 
+#### 8️⃣ Optional - Version Management
+
+To update the package version across all files (package.json, Installer.cs, etc.), use the bump version script:
+
+```powershell
+.\commands\bump-version.ps1 -NewVersion "1.0.1"
+```
+
 ##### Final polishing
 
 - Update the `README.md` file (this file) with information about your package.
@@ -113,13 +165,13 @@ To enable automatic testing and deployment:
 
 > ⚠️ Everything outside of the `root` folder won't be added to your package. But still could be used for testing or showcasing your package at your repository.
 
-#### 8️⃣ Deploy to any registry you like
+#### 9️⃣ Deploy to any registry you like
 
 - [Deploy to OpenUPM](https://github.com/IvanMurzak/Unity-Package-Template/blob/main/Docs/Deploy-OpenUPM.md) (recommended)
 - [Deploy using GitHub](https://github.com/IvanMurzak/Unity-Package-Template/blob/main/Docs/Deploy-GitHub.md)
 - [Deploy to npmjs.com](https://github.com/IvanMurzak/Unity-Package-Template/blob/main/Docs/Deploy-npmjs.md)
 
-#### 9️⃣ Install your package into Unity Project
+# Install your package into Unity Project
 
 When your package is distributed, you can install it into any Unity project.
 
