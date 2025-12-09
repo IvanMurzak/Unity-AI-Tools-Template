@@ -10,7 +10,20 @@
         "keyword2"
     ],
     "version": "1.0.0",
-    "unity": "2019.4",
+    "unity": "2022.3",
     "description": "Some description",
-    "dependencies": {}
+    "dependencies": {
+        "com.ivanmurzak.unity.mcp": "0.27.0"
+    },
+    "scopedRegistries": [
+        {
+            "name": "package.openupm.com",
+            "url": "https://package.openupm.com",
+            "scopes": [
+                "org.nuget",
+                "extensions.unity",
+                "com.ivanmurzak"
+            ]
+        }
+    ]
 }
