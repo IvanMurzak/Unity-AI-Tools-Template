@@ -1,6 +1,8 @@
 {
     "name": "YOUR_PACKAGE_ID.Runtime",
-    "references": [],
+    "references": [
+        "com.IvanMurzak.Unity.MCP.Runtime"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [
         "Editor"
