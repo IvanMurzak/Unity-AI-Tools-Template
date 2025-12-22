@@ -10,7 +10,7 @@ This template repository is designed to be easily updated into a real Unity pack
 
 #### 1️⃣ Click the button to create new repository on GitHub using this template.
 
-[![create new repository](https://user-images.githubusercontent.com/9135028/198753285-3d3c9601-0711-43c7-a8f2-d40ec42393a2.png)](https://github.com/IvanMurzak/Unity-Package-Template/generate)
+[![create new repository](https://user-images.githubusercontent.com/9135028/198753285-3d3c9601-0711-43c7-a8f2-d40ec42393a2.png)](https://github.com/IvanMurzak/Unity-AI-Tools-Template/generate)
 
 #### 2️⃣ Clone your new repository and open it in Unity Editor
 
