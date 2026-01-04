@@ -2,7 +2,9 @@
     "name": "YOUR_PACKAGE_ID.Editor.Tests",
     "references": [
         "com.IvanMurzak.Unity.MCP.Editor",
+        "com.IvanMurzak.Unity.MCP.Editor.Tests",
         "com.IvanMurzak.Unity.MCP.Runtime",
+        "com.IvanMurzak.Unity.MCP.TestFiles",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "YOUR_PACKAGE_ID.Runtime",
@@ -15,7 +17,15 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll"
+        "nunit.framework.dll",
+        "System.Text.Json.dll",
+        "Microsoft.Extensions.Logging.Abstractions.dll",
+        "Microsoft.AspNetCore.SignalR.Client.dll",
+        "Microsoft.AspNetCore.SignalR.Client.Core.dll",
+        "ReflectorNet.dll",
+        "McpPlugin.dll",
+        "McpPlugin.Common.dll",
+        "R3.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

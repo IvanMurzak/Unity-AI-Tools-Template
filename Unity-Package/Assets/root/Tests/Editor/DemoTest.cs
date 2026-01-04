@@ -11,10 +11,11 @@
 #nullable enable
 using System.Collections;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace YOUR_PACKAGE_ID.Runtime.Tests
+namespace YOUR_PACKAGE_ID.Editor.Tests
 {
     public partial class DemoTest
     {
