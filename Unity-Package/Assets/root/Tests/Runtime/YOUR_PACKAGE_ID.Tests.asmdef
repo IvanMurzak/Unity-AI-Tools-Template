@@ -2,7 +2,7 @@
     "name": "YOUR_PACKAGE_ID.Tests",
     "references": [
         "com.IvanMurzak.Unity.MCP.Runtime",
-        "com.IvanMurzak.Unity.MCP.Runtime.Tests",
+        "com.IvanMurzak.Unity.MCP.Tests",
         "com.IvanMurzak.Unity.MCP.TestFiles",
         "UnityEngine.TestRunner",
         "YOUR_PACKAGE_ID.Runtime"
