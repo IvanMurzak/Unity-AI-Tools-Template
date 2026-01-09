@@ -16,7 +16,7 @@ namespace YOUR_PACKAGE_ID.Installer
     public static partial class Installer
     {
         public const string PackageId = "YOUR_PACKAGE_ID_LOWERCASE";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
 
         static Installer()
         {
