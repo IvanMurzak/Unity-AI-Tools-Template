@@ -47,5 +47,6 @@
         "org.nuget"
       ]
     }
-  ]
+  ],
+  "testables": ["YOUR_PACKAGE_ID_LOWERCASE"]
 }
