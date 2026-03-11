@@ -49,5 +49,5 @@
       ]
     }
   ],
-  "testables": ["YOUR_PACKAGE_ID_LOWERCASE"]
+  "testables": ["YOUR_PACKAGE_ID_LOWERCASE", "com.ivanmurzak.unity.mcp"]
 }
