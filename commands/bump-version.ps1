@@ -48,18 +48,6 @@ $VersionFiles = @(
         Pattern     = 'public const string Version = "[\d\.]+";'
         Replace     = 'public const string Version = "{VERSION}";'
         Description = "Installer C# version constant"
-    },
-    @{
-        Path        = "Unity-Package/Assets/root/README.md"
-        Pattern     = "https://github\.com/YOUR_GITHUB_USERNAME_REPOSITORY/releases/download/[\d\.]+/YOUR_PACKAGE_NAME_INSTALLER_FILE\.unitypackage"
-        Replace     = "https://github.com/YOUR_GITHUB_USERNAME_REPOSITORY/releases/download/{VERSION}/YOUR_PACKAGE_NAME_INSTALLER_FILE.unitypackage"
-        Description = "Package README download URL"
-    },
-    @{
-        Path        = "README.md"
-        Pattern     = "https://github\.com/YOUR_GITHUB_USERNAME_REPOSITORY/releases/download/[\d\.]+/YOUR_PACKAGE_NAME_INSTALLER_FILE\.unitypackage"
-        Replace     = "https://github.com/YOUR_GITHUB_USERNAME_REPOSITORY/releases/download/{VERSION}/YOUR_PACKAGE_NAME_INSTALLER_FILE.unitypackage"
-        Description = "Repository README download URL"
     }
 )
 
