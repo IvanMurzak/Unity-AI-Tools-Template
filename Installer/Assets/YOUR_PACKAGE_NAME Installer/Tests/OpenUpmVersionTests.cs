@@ -14,7 +14,7 @@ namespace YOUR_PACKAGE_ID.Installer.Tests
     public class OpenUpmVersionTests
     {
         const string SampleResponse = @"{
-            ""name"": ""YOUR_PACKAGE_ID_LOWERCASE"",
+            ""name"": ""com.ivanmurzak.unity.mcp"",
             ""versions"": {
                 ""0.1.0"": { ""version"": ""0.1.0"" },
                 ""0.5.0"": { ""version"": ""0.5.0"" },
