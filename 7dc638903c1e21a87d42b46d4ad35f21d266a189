@@ -1,0 +1,31 @@
+"Installer/Assets/YOUR_PACKAGE_NAME Installer/Tests/Files/scopes_partial_1.json"
+  67325c1c1f95608d 13
+"Installer/Assets/YOUR_PACKAGE_NAME Installer/Tests/Files/Correct/correct_manifest.json"
+  67325c1c1f95608d 14
+"Installer/Assets/YOUR_PACKAGE_NAME Installer/Tests/Files/scopes_partial_3.json"
+  67325c1c1f95608d 14
+"Installer/Assets/YOUR_PACKAGE_NAME Installer/Tests/ManifestInstallerTests.cs"
+  67325c1c1f95608d 10,20-21,24-27,29-30,33-35,39-42,45-46,48-52,54,56-58,60-61,63-65
+"Installer/Assets/YOUR_PACKAGE_NAME Installer/PackageExporter.cs"
+  67325c1c1f95608d 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "7dc638903c1e21a87d42b46d4ad35f21d266a189",
+  "prompts": {
+    "67325c1c1f95608d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ef612d11-d90b-4b89-a973-5d41e303439f",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ivan Murzak",
+      "messages": [],
+      "total_additions": 1634,
+      "total_deletions": 238,
+      "accepted_lines": 210,
+      "overriden_lines": 0
+    }
+  }
+}
