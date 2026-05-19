@@ -1,0 +1,22 @@
+.github/workflows/release.yml-sample
+  s_654de69f735d07::t_d5474553c7506e 72
+  s_654de69f735d07::t_da8c881ec3232c 95
+.github/workflows/test_unity_plugin.yml
+  s_654de69f735d07::t_2e71ca08d10935 93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.10",
+  "base_commit_sha": "b590e2c92635a7e29e22c0cc0634f029eecc450d",
+  "prompts": {},
+  "sessions": {
+    "s_654de69f735d07": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "34ec1565-61c8-4a4c-bf8b-77566ebf0d69",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ivan Murzak <Ivan.D.Murzak@gmail.com>"
+    }
+  }
+}
