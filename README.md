@@ -27,7 +27,7 @@ This script will:
 - Replace `YOUR_PACKAGE_ID`, `YOUR_PACKAGE_NAME`, etc. in all files and folder names.
 
 ### 4️⃣ Update `package.json`
-Open `Unity-Package/Assets/root/package.json` and update:
+Open `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json` and update:
 - `description`
 - `author`
 - `keywords`
@@ -76,8 +76,8 @@ Decide what type of MCP tool you need:
 
 Based on your choice create script at the location
 
-- Editor: `Unity-Package/Assets/root/Editor`
-- Runtime: `Unity-Package/Assets/root/Runtime`
+- Editor: `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor`
+- Runtime: `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Runtime`
 
 > Read detailed instructions about custom tool development [here](https://github.com/IvanMurzak/Unity-MCP?tab=readme-ov-file#add-custom-mcp-tool).
 
@@ -140,7 +140,7 @@ To enable automatic testing and deployment:
 4.  **Automatic Deployment**
     The release workflow triggers automatically when you push to the `main` branch with an incremented version in `package.json`.
 
-### 3. Add files into `Unity-Package/Assets/root` folder
+### 3. Add files into `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE` folder
 
 [Unity guidelines](https://docs.unity3d.com/Manual/cus-layout.html) about organizing files into the package root directory
 
@@ -175,7 +175,7 @@ To enable automatic testing and deployment:
 # Final polishing
 
 - Update the `README.md` file (this file) with information about your package.
-- Copy the updated `README.md` to `Assets/root` as well.
+- Copy the updated `README.md` to `Packages/YOUR_PACKAGE_ID_LOWERCASE` as well.
 
 > ⚠️ Everything outside of the `root` folder won't be added to your package. But still could be used for testing or showcasing your package at your repository.
 

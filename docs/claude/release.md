@@ -16,9 +16,9 @@ Use the bump script to update versions across all files in lock-step
 What the script does (`commands/bump-version.ps1`):
 
 - Validates semver format (`major.minor.patch`, optional pre-release/build).
-- Reads the current version from `Unity-Package/Assets/root/package.json`.
+- Reads the current version from `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json`.
 - Updates these files atomically:
-  - `Unity-Package/Assets/root/package.json` — `"version": "X.Y.Z"`
+  - `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json` — `"version": "X.Y.Z"`
   - `Installer/Assets/YOUR_PACKAGE_NAME_INSTALLER/Installer.cs` — `public const string Version = "X.Y.Z";`
 - No-ops cleanly if new version equals current.
 - Reminds you to commit the result.

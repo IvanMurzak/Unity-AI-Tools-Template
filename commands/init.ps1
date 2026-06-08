@@ -126,6 +126,8 @@ Write-Host ""
 # Ignore patterns are relative to the target path and support wildcards (*) for single directory level
 $TargetPaths = @(
     @{ Path = "commands/bump-version.ps1" },
+    @{ Path = "commands/get-version.ps1" },
+    @{ Path = "commands/update-ai-game-developer.ps1" },
     @{
         Path   = "Installer"
         Ignore = @(

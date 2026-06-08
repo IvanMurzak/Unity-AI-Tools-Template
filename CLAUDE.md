@@ -21,7 +21,7 @@ future extension created from it — keep placeholder tokens consistent.
 ./commands/get-version.ps1
 ```
 
-Package source: `Unity-Package/Assets/root/` (only this folder ships).
+Package source: `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/` (only this folder ships).
 Multi-version test rigs: `Unity-Tests/{2022.3.62f3,2023.2.22f1,6000.3.1f1}`.
 
 ## Find detail in
