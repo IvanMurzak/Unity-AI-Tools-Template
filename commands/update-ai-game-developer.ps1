@@ -33,7 +33,7 @@ $GitHubRepo = "IvanMurzak/Unity-MCP"
 
 # Files to update
 $TargetFiles = @(
-    "Unity-Package/Assets/root/package.json",
+    "Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json",
     "Unity-Package/Packages/manifest.json"
 )
 

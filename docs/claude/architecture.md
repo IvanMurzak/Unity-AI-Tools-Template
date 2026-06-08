@@ -15,7 +15,7 @@ Unity-AI-Tools-Template/
 ├── docs/                     # User-facing docs (Deploy guides, manual rename, images)
 │   └── claude/               # On-demand notes for Claude Code (this folder)
 ├── Installer/                # Standalone Unity project that builds .unitypackage installer
-├── Unity-Package/            # The package source — only `Assets/root/` ships
+├── Unity-Package/            # The package source — only `Packages/YOUR_PACKAGE_ID_LOWERCASE/` ships
 │   └── Assets/
 │       └── root/             # Files inside this folder become the package
 │           ├── package.json
@@ -32,14 +32,14 @@ Unity-AI-Tools-Template/
 └── LICENSE
 ```
 
-> Anything outside `Unity-Package/Assets/root/` is NOT shipped to consumers.
+> Anything outside `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/` is NOT shipped to consumers.
 > It exists only for testing, CI, and showcasing.
 
 ## Tech stack
 
 - **Language:** C# 9.0, `netstandard2.1`
 - **Unity:** 2022.3+ (minimum). Tested against 2022.3.62f3, 2023.2.22f1, 6000.3.1f1.
-- **Dependency:** `com.ivanmurzak.unity.mcp` v0.68.0 (declared in `Unity-Package/Assets/root/package.json`)
+- **Dependency:** `com.ivanmurzak.unity.mcp` v0.68.0 (declared in `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json`)
 - **Assemblies (placeholders set by init.ps1):**
   - `YOUR_PACKAGE_ID.Editor`
   - `YOUR_PACKAGE_ID.Runtime`
@@ -54,11 +54,11 @@ Unity-AI-Tools-Template/
 
 When adding a new MCP tool:
 
-- **Editor tool** → put under `Unity-Package/Assets/root/Editor`
+- **Editor tool** → put under `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor`
   - Works in Edit Mode and Play Mode in the Editor.
   - Has access to Editor APIs.
   - NOT shipped in game builds.
-- **Runtime tool** → put under `Unity-Package/Assets/root/Runtime`
+- **Runtime tool** → put under `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Runtime`
   - Works in Edit Mode and Play Mode in the Editor.
   - NO access to Editor APIs.
   - Ships in game builds.

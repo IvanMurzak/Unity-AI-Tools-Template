@@ -20,7 +20,6 @@
             "name": "package.openupm.com",
             "url": "https://package.openupm.com",
             "scopes": [
-                "org.nuget",
                 "extensions.unity",
                 "com.ivanmurzak"
             ]
