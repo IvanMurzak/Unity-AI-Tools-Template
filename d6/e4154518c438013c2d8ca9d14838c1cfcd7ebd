@@ -1,0 +1,21 @@
+Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json
+  s_f7f7392a09f46e::t_db98f138d7739d 16
+Unity-Package/Packages/manifest.json
+  s_f7f7392a09f46e::t_341a14863ce4f2 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "d6e4154518c438013c2d8ca9d14838c1cfcd7ebd",
+  "prompts": {},
+  "sessions": {
+    "s_f7f7392a09f46e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d6d5d57f-6526-4873-9255-59c34d4f8571",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ivan Murzak <Ivan.D.Murzak@gmail.com>"
+    }
+  }
+}
