@@ -6,7 +6,7 @@ so every change here propagates to future extensions — keep placeholder tokens
 
 ## Placeholders
 
-`init.ps1` (the single source of truth) replaces `YOUR_PACKAGE_ID`, `YOUR_PACKAGE_ID_LOWERCASE`,
+`init.ps1` replaces `YOUR_PACKAGE_ID`, `YOUR_PACKAGE_ID_LOWERCASE`,
 `YOUR_PACKAGE_NAME`, `YOUR_PACKAGE_NAME_INSTALLER`, `YOUR_PACKAGE_NAME_INSTALLER_FILE` and
 `YOUR_GITHUB_USERNAME_REPOSITORY` in file contents and file/folder names — but only under its `$TargetPaths`
 (`Installer/`, `Unity-Package/`, `Unity-Tests/`, `.github/`, `README.md`, three `commands/` scripts).
@@ -22,10 +22,8 @@ its own (what it wraps, its invariants).
   - `Tests/Editor/` (EditMode) and `Tests/Runtime/` (PlayMode) — NUnit + Unity Test Framework.
 - `Unity-Tests/<unity-version>/` — one test project per supported Unity version, referencing the package via
   `file:`. Adding a version: also add it to both `*.yml-sample` workflows and `open-all-projects-*`.
-- `Installer/` — Unity project that exports the `.unitypackage` installer
-  (`Assets/YOUR_PACKAGE_NAME Installer/`, whose `Installer.cs` carries a `Version` constant).
-- `commands/` — `init.ps1`, `bump-version.ps1`, `get-version.ps1`, `update-ai-game-developer.ps1`,
-  `open-all-projects-{windows.ps1,unix.sh}`, `check-versions.py`.
+- `Installer/` — Unity project that exports the `.unitypackage` installer (`Assets/YOUR_PACKAGE_NAME Installer/`).
+- `commands/` — the scripts below, plus `open-all-projects-unix.sh` and `check-versions.py`.
 - `.github/workflows/` — `bump_version.yml`, `test_unity_plugin.yml` (reusable test job), and
   `release.yml-sample` / `test_pull_request.yml-sample` (inert until renamed after init; see `README.md`).
 - `docs/` — user docs: `Deploy-{OpenUPM,GitHub,npmjs}.md`, `Manual-Package-Rename.md`, `openupm-signing.md`.
@@ -50,7 +48,7 @@ its own (what it wraps, its invariants).
 
 ## Conventions
 
-- Tools: one `[AiToolType]` `static partial class` per area, one `[AiTool(...)]` method per file, with
+- Tools: one `[AiToolType]` partial class per area, one `[AiTool(...)]` method per file, with
   `[Description]` on the method and every parameter (that text is what the LLM sees).
 - Unity API calls run on the main thread: wrap them in `MainThread.Instance.Run(...)` / `RunAsync(...)`;
   only argument validation runs outside.
