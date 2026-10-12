@@ -1,0 +1,20 @@
+Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json
+  h_8325a340bf5897 16
+Unity-Tests/2022.3.62f3/Packages/packages-lock.json
+  h_8325a340bf5897 4
+Unity-Tests/2023.2.22f1/Packages/packages-lock.json
+  h_8325a340bf5897 4
+Unity-Tests/6000.3.1f1/Packages/packages-lock.json
+  h_8325a340bf5897 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "cafc571a57928abf74827188757df660c9cbb660",
+  "prompts": {},
+  "humans": {
+    "h_8325a340bf5897": {
+      "author": "Ivan Murzak <Ivan.D.Murzak@gmail.com>"
+    }
+  }
+}
