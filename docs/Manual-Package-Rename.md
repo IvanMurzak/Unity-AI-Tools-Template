@@ -33,3 +33,9 @@
     - 👉 **Replace** the `Package` keyword in the file content (multiple places)
 
 </details>
+
+#### 3️⃣ Rename the RQL example
+
+- 👉 **Replace** `YOUR_FEATURE_NAME_LOWERCASE` (the RQL source name, e.g. `mypackage`) and then `YOUR_FEATURE_NAME`
+  (a C# identifier, e.g. `MyPackage`) in file contents and file names under `Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor/Scripts/Rql`
+  and `Packages/YOUR_PACKAGE_ID_LOWERCASE/Tests/Editor/Rql`. Do not use a Unity type name you reference (e.g. `Light`).

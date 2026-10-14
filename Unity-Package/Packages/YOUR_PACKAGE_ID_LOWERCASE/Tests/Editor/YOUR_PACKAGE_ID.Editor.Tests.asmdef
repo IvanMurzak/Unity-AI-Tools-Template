@@ -23,11 +23,15 @@
         "ReflectorNet.dll",
         "McpPlugin.dll",
         "McpPlugin.Common.dll",
-        "R3.dll"
+        "R3.dll",
+        "Rql.Contracts.dll",
+        "Rql.Parser.dll",
+        "Rql.Execution.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
+        "UNITY_INCLUDE_TESTS",
+        "UNITY_MCP_READY"
     ],
     "versionDefines": [],
     "noEngineReferences": false

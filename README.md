@@ -19,12 +19,13 @@ This template repository is designed to be easily updated into a real Unity pack
 Use the initialization script to rename the package and replace all placeholders.
 
 ```powershell
-./commands/init.ps1 -PackageId "com.company.package" -PackageName "My Package"
+./commands/init.ps1 -PackageId "com.company.package" -PackageName "My Package" -GitHubRepository "user/repo"
+# optional: -FeatureName "MyFeature"  (C# identifier for the RQL module; default: the package name without spaces)
 ```
 
 This script will:
 - Rename directories and files.
-- Replace `YOUR_PACKAGE_ID`, `YOUR_PACKAGE_NAME`, etc. in all files and folder names.
+- Replace `YOUR_PACKAGE_ID`, `YOUR_PACKAGE_NAME`, `YOUR_FEATURE_NAME`, etc. in all files and folder names.
 
 ### 4️⃣ Update `package.json`
 Open `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json` and update:
@@ -59,44 +60,66 @@ Open `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/package.json` and update:
    - Add the `Unity-Package` folder as a project.
    - Open both projects in Unity Editor. This will generate the necessary `.meta` files.
 
-### 6️⃣ Add MCP Tools
+### 6️⃣ Teach AI agents your feature (RQL first)
 
-Decide what type of MCP tool you need:
+AI Game Developer gives agents three generic tools: `rql-query`, `rql-mutate` and `rql-schema`
+([RQL](https://github.com/IvanMurzak/Unity-MCP/blob/main/docs/dev/rql.md), a query language over the Unity scene, assets and
+Editor). An extension does **not** add MCP tools for reading or editing data. It adds an **RQL module** that teaches RQL its
+types, and a short guide that is rendered into the `unity-rql` skill agents read. The template ships a working example in
+`Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor/Scripts/Rql/` (replace it with your feature):
 
-- **MCP tool for Unity Editor**
-  - ✔️ Works in Unity Editor (Edit Mode)
-  - ✔️ Works in Unity Editor (Play Mode)
-  - ✔️ Has access to Editor API
-  - ❌ Available in a game build
-- **MCP tool for Unity Runtime**
-  - ✔️ Works in Unity Editor (Edit Mode)
-  - ✔️ Works in Unity Editor (Play Mode)
-  - ❌ Has access to Editor API
-  - ✔️ Available in a game build
+| File | What it shows |
+|---|---|
+| `YOUR_FEATURE_NAMEModule.cs` | `IRqlModule` (`Order => 100`), discovered automatically when the package is installed: registers the source, the adapter and `ctx.AddGuide(topic, markdown)` with example queries |
+| `UnityEngine_Light_Adapter.cs` | `RqlTypeAdapter<Light>`: a virtual member (`castsShadows`) and a callable method (`ScaleIntensity`). One adapter per file, named after the full type name |
+| `YOUR_FEATURE_NAMEEditorApi.cs` | the `YOUR_FEATURE_NAME_LOWERCASE` source: an `[RqlCallable]` operation without an owner object (`YOUR_FEATURE_NAME_LOWERCASE \| call CreateLight("Lamp", "Spot")`) |
 
-Based on your choice create script at the location
+What to add, in this order:
 
-- Editor: `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor`
-- Runtime: `Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Runtime`
+1. **Nothing**, if plain reflection is enough: public members of your components and assets are already readable and
+   writable (`objects | get components | where $ is MyComponent | set speed = 3`).
+2. **An adapter** (`RqlTypeAdapter<T>`) to add virtual members and methods, hide or guard members, validate writes, or
+   parse literals. API: [type adapters](https://github.com/IvanMurzak/RQL/blob/main/docs/type-adapters.md).
+3. **A source** (`ctx.AddSource`) for operations that have no owner object yet (create, import), or **functions**
+   (`ctx.AddFunction`) for read-only computations usable in `rql-query`.
+4. **A guide** (`ctx.AddGuide`): what agents need to know plus example queries. The test `EveryGuideExampleRuns` executes
+   every example, so keep them runnable.
+
+Name-clash rule: code in `com.IvanMurzak.Unity.MCP.Editor.Rql.*` resolves simple names against the enclosing namespaces
+(other extensions add `...Rql.Animation`, `...Rql.Terrains` …) before the file's `using` directives. Declare aliases for the
+Unity types you use inside the namespace block (`using Light = UnityEngine.Light;`), and do not name the feature namespace
+after a Unity type you reference. `init.ps1 -FeatureName` sets the identifier (default: the package name without spaces).
+
+Tests live in `Tests/Editor/Rql/`: a base class (fresh scene, `RqlUnity.Reset()`, `Q()` for queries, `M()` for mutations),
+one test file per adapter / source, and module tests (discovery, the guide in `Skill_Rql.Render()`, every guide example,
+one call through the MCP pipeline).
+
+#### An MCP tool only for what RQL cannot express
+
+Add a classic MCP tool only for binary output (images, files), long-running or asynchronous work (builds, bakes, imports
+that span frames), or calls to external processes. Decide where it runs:
+
+- **Editor** (`Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Editor`): Edit and Play Mode, Editor API, not in game builds.
+- **Runtime** (`Unity-Package/Packages/YOUR_PACKAGE_ID_LOWERCASE/Runtime`): Edit and Play Mode and game builds, no Editor API.
 
 > Read detailed instructions about custom tool development [here](https://github.com/IvanMurzak/Unity-MCP?tab=readme-ov-file#add-custom-mcp-tool).
 
 ```csharp
-[McpPluginToolType]
-public static class MyCustomTool
+[AiToolType]
+public partial class Tool_MyFeature
 {
-    [McpPluginTool("my-custom-feature", Title = "Do my custom feature")]
+    [AiTool("my-feature-bake", Title = "My Feature / Bake")]
     [Description("Put here the tool description for LLM.")]
-    public static Task<bool> DoTurn(
-        [Description("Add description to the input property, help LLM better understand it.)]
-        int figureId,
-        [Description("Add description to the input property, help LLM better understand it.)]
-        Vector2Int position)
+    public Task<bool> Bake
+    (
+        [Description("Add description to the input property, help LLM better understand it.")]
+        string assetPath
+    )
     {
-        // do any logic in background thread here
+        // validate arguments here (any thread)
         return MainThread.Instance.RunAsync(() =>
         {
-            // do any logic in main thread here
+            // Unity API calls here (main thread)
 
             return true;
         });
