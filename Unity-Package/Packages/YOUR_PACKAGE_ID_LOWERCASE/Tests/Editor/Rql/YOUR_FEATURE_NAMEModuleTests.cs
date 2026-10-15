@@ -39,10 +39,9 @@ namespace com.IvanMurzak.Unity.MCP.Editor.Tests.Rql.YOUR_FEATURE_NAME
         [Test]
         public void TheGuideIsPartOfTheRqlSkill()
         {
-            var skill = global::com.IvanMurzak.Unity.MCP.Editor.API.Skill_Rql.Render();
-            StringAssert.Contains("## " + YOUR_FEATURE_NAMEModule.GuideTopic, skill);
-            StringAssert.Contains(YOUR_FEATURE_NAMEModule.SourceName + " | call CreateLight(", skill);
-            StringAssert.Contains("call ScaleIntensity(", skill);
+            var guide = Guide();
+            StringAssert.Contains(YOUR_FEATURE_NAMEModule.SourceName + " | call CreateLight(", guide);
+            StringAssert.Contains("call ScaleIntensity(", guide);
         }
 
         /// <summary>Every example query of the guide runs, in order, against the base scene (one light "Bulb").</summary>

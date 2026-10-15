@@ -71,5 +71,8 @@ namespace com.IvanMurzak.Unity.MCP.Editor.Tests.Rql.YOUR_FEATURE_NAME
 
         /// <summary>The <c>result</c> column of a call receipt ($ref, method, result).</summary>
         protected static string Result(QueryResult r) => Cell(r, 2);
+
+        /// <summary>What rql-schema prints: the source list (null) or one type's members.</summary>
+        protected static string Schema(string? typeName) => RqlUnitySchema.Render(RqlUnity.Engine, typeName);
     }
 }

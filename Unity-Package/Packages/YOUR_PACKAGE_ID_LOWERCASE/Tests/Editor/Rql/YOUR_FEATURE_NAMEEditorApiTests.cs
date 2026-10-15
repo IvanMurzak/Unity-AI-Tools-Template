@@ -57,8 +57,6 @@ namespace com.IvanMurzak.Unity.MCP.Editor.Tests.Rql.YOUR_FEATURE_NAME
         }
 
         [Test]
-        public void TheSourceIsListedInTheSchema() =>
-            StringAssert.Contains(S, global::com.IvanMurzak.Unity.MCP.Editor.Rql.RqlUnitySchema.Render(
-                global::com.IvanMurzak.Unity.MCP.Editor.Rql.RqlUnity.Engine, null));
+        public void TheSourceIsListedInTheSchema() => StringAssert.Contains(S, Schema(null));
     }
 }

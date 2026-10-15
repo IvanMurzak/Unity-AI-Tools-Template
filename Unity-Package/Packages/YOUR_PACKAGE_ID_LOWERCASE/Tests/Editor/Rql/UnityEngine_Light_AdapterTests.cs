@@ -53,7 +53,7 @@ namespace com.IvanMurzak.Unity.MCP.Editor.Tests.Rql.YOUR_FEATURE_NAME
         [Test]
         public void TheSchemaDescribesTheAdapter()
         {
-            var light = global::com.IvanMurzak.Unity.MCP.Editor.Rql.RqlUnitySchema.Render(global::com.IvanMurzak.Unity.MCP.Editor.Rql.RqlUnity.Engine, "Light");
+            var light = Schema("Light");
             StringAssert.Contains("castsShadows", light);
             StringAssert.Contains("ScaleIntensity(", light);
         }
