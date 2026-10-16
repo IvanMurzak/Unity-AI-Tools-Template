@@ -12,6 +12,8 @@
     - YOUR_PACKAGE_NAME_INSTALLER
     - YOUR_PACKAGE_NAME_INSTALLER_FILE
     - YOUR_GITHUB_USERNAME_REPOSITORY
+    - YOUR_FEATURE_NAME            (C# identifier: RQL module namespace and class names)
+    - YOUR_FEATURE_NAME_LOWERCASE  (the RQL source name agents type, e.g. "coolpackage | call ...")
 
 .PARAMETER PackageId
     The package ID (e.g., "com.company.package").
@@ -27,6 +29,11 @@
 .PARAMETER GitHubRepository
     The GitHub username and repository name in the format "Username/Repository-Name".
     For example, "MyGitHubUsername/My-Repository-Name".
+
+.PARAMETER FeatureName
+    Optional. A C# identifier for the extension's RQL module (namespace com.IvanMurzak.Unity.MCP.Editor.Rql.<FeatureName>,
+    class <FeatureName>Module). Defaults to PackageName without spaces and symbols ("Cool Package" -> "CoolPackage").
+    Must not equal a Unity type name the module uses (e.g. "Terrain", "Light").
 
 .EXAMPLE
     .\init.ps1 -PackageId "com.mycompany.coolpackage" -PackageName "Cool Package"
@@ -49,7 +56,10 @@ param(
     [string]$InstallerExtraPath,
 
     [Parameter(Mandatory = $true)]
-    [string]$GitHubRepository
+    [string]$GitHubRepository,
+
+    [Parameter(Mandatory = $false)]
+    [string]$FeatureName
 )
 
 $ErrorActionPreference = "Stop"
@@ -68,6 +78,17 @@ if (-not [string]::IsNullOrWhiteSpace($InstallerExtraPath)) {
 
 # Derived variables
 $PackageIdLowercase = $PackageId.ToLower()
+
+# RQL feature name: a C# identifier (namespace segment / class name prefix)
+if ([string]::IsNullOrWhiteSpace($FeatureName)) {
+    $FeatureName = (($PackageName -split '[^A-Za-z0-9]+' | Where-Object { $_ } | ForEach-Object {
+        $_.Substring(0, 1).ToUpper() + $_.Substring(1)
+    }) -join '')
+}
+if ($FeatureName -notmatch '^[A-Za-z][A-Za-z0-9]*$') {
+    throw "FeatureName '$FeatureName' is not a valid identifier (letters and digits, starting with a letter). Pass -FeatureName."
+}
+$FeatureNameLowercase = $FeatureName.ToLower()
 
 # Compute base installer name and file name first
 $PackageNameInstallerBase = "$PackageName Installer"
@@ -89,6 +110,8 @@ $Replacements = @{
     "YOUR_PACKAGE_NAME_INSTALLER_FILE" = $PackageNameInstallerFile
     "YOUR_PACKAGE_NAME_INSTALLER"      = $PackageNameInstaller
     "YOUR_GITHUB_USERNAME_REPOSITORY"  = $GitHubRepository
+    "YOUR_FEATURE_NAME"                = $FeatureName
+    "YOUR_FEATURE_NAME_LOWERCASE"      = $FeatureNameLowercase
 }
 
 # Replacements map for file/folder renaming (uses base names without extra path)
@@ -99,6 +122,8 @@ $ReplacementsForRenaming = @{
     "YOUR_PACKAGE_NAME_INSTALLER_FILE" = $PackageNameInstallerFile
     "YOUR_PACKAGE_NAME_INSTALLER"      = $PackageNameInstallerBase
     "YOUR_GITHUB_USERNAME_REPOSITORY"  = $GitHubRepository
+    "YOUR_FEATURE_NAME"                = $FeatureName
+    "YOUR_FEATURE_NAME_LOWERCASE"      = $FeatureNameLowercase
 }
 
 # Sort keys by length descending to avoid partial replacements
@@ -114,6 +139,7 @@ Write-Host "  Name: $PackageName"
 Write-Host "  Installer: $PackageNameInstaller"
 Write-Host "  Installer File: $PackageNameInstallerFile"
 Write-Host "  GitHub Repository: $GitHubRepository"
+Write-Host "  RQL Feature Name: $FeatureName (source: $FeatureNameLowercase)"
 if (-not [string]::IsNullOrWhiteSpace($InstallerExtraPath)) {
     Write-Host "  Installer Extra Path: $InstallerExtraPath"
 }
